@@ -89,4 +89,24 @@ public class CoronavirusDataService {
     public Map<String, CountryStats> getCountryCovidData() {
         return countryCovidData;
     }
+
+    public int getTotalCovidCountForAllCountries() {
+        int totalReportedCases = 0;
+
+        for (Map.Entry<String, CountryStats> key : countryCovidData.entrySet()) {
+            totalReportedCases += key.getValue().getTotalCovidCount();
+        }
+
+        return totalReportedCases;
+    }
+
+    public int getTotalDailyCovidCountForAllCountries() {
+        int totalDailyCovidCount = 0;
+
+        for (Map.Entry<String, CountryStats> key : countryCovidData.entrySet()) {
+            totalDailyCovidCount += key.getValue().getDailyCovidCount();
+        }
+
+        return totalDailyCovidCount;
+    }
 }

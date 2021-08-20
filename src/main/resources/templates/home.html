@@ -4,20 +4,38 @@
     <head>
         <title>Coronavirus Tracker</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     </head>
 
     <body>
-        <table>
-            <tr>
-                <th>Country</th>
-                <th>Total coronavirus cases</th>
-                <th>Daily coronavirus count</th>
-            </tr>
-            <tr th:each="countryData : ${coronavirusData.entrySet()}">
-                <td th:text="${countryData.getValue().country}"></td>
-                <td th:text="${countryData.getValue().totalCovidCount}">0</td>
-                <td th:text="${countryData.getValue().dailyCovidCount}">0</td>
-            </tr>
-        </table>
+        <div class="container">
+            <h1>Coronavirus Tracker</h1>
+            <p>This applications is reporting the global coronavirus cases:</p>
+
+            <div class="jumbotron">
+                <h1 class="display-4" th:text="${totalReportedCases}"></h1>
+                <p class="lead">Total number of reported coronavirus cases</p>
+
+                <hr class="my-4">
+
+                <p>
+                    <span>New cases reported yesterday:</span>
+                    <span th:text="${totalDailyCovidCount}"></span>
+                </p>
+            </div>
+
+            <table class="table">
+                <tr>
+                    <th>Country</th>
+                    <th>Total coronavirus cases</th>
+                    <th>Daily coronavirus count</th>
+                </tr>
+                <tr th:each="countryData : ${coronavirusData.entrySet()}">
+                    <td th:text="${countryData.getValue().country}"></td>
+                    <td th:text="${countryData.getValue().totalCovidCount}">0</td>
+                    <td th:text="${countryData.getValue().dailyCovidCount}">0</td>
+                </tr>
+            </table>
+        </div>
     </body>
 </html>
