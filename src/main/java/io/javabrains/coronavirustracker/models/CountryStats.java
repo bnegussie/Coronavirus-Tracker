@@ -1,5 +1,7 @@
 package io.javabrains.coronavirustracker.models;
 
+import io.javabrains.coronavirustracker.models.FormatData;
+
 public class CountryStats {
     private String country;
     private int totalCovidCount;
@@ -18,6 +20,14 @@ public class CountryStats {
 
     public int getDailyCovidCount() {
         return dailyCovidCount;
+    }
+
+    public String getTotalCovidCountString() {
+        return FormatData.formatData( totalCovidCount );
+    }
+
+    public String getDailyCovidCountString() {
+        return FormatData.formatData( dailyCovidCount );
     }
 
     public String getCountry() {

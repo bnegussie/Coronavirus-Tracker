@@ -17,6 +17,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import io.javabrains.coronavirustracker.models.CountryStats;
+import io.javabrains.coronavirustracker.models.FormatData;
 
 @Service
 public class CoronavirusDataService {
@@ -90,23 +91,23 @@ public class CoronavirusDataService {
         return countryCovidData;
     }
 
-    public int getTotalCovidCountForAllCountries() {
+    public String getTotalCovidCountForAllCountries() {
         int totalReportedCases = 0;
 
         for (Map.Entry<String, CountryStats> key : countryCovidData.entrySet()) {
             totalReportedCases += key.getValue().getTotalCovidCount();
         }
 
-        return totalReportedCases;
+        return FormatData.formatData( totalReportedCases );
     }
 
-    public int getTotalDailyCovidCountForAllCountries() {
+    public String getTotalDailyCovidCountForAllCountries() {
         int totalDailyCovidCount = 0;
 
         for (Map.Entry<String, CountryStats> key : countryCovidData.entrySet()) {
             totalDailyCovidCount += key.getValue().getDailyCovidCount();
         }
 
-        return totalDailyCovidCount;
+        return FormatData.formatData( totalDailyCovidCount );
     }
 }
