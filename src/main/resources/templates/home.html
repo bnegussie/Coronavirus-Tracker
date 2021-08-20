@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Coronavirus Tracker</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+
+    <body>
+        <table>
+            <tr>
+                <th>Country</th>
+                <th>Total coronavirus cases</th>
+                <th>Daily coronavirus count</th>
+            </tr>
+            <tr th:each="countryData : ${coronavirusData.entrySet()}">
+                <td th:text="${countryData.getValue().country}"></td>
+                <td th:text="${countryData.getValue().totalCovidCount}">0</td>
+                <td th:text="${countryData.getValue().dailyCovidCount}">0</td>
+            </tr>
+        </table>
+    </body>
+</html>
