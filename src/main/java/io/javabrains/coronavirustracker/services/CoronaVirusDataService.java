@@ -26,6 +26,8 @@ public class CoronavirusDataService {
 
     private Map<String, CountryStats> countryCovidData = new TreeMap<String, CountryStats>();
 
+    private String lastDateUpdatedForDailyCovidCount = "";
+
     @PostConstruct
     @Scheduled(cron = "@hourly")
     public void fetchVirusData() throws IOException, InterruptedException {
@@ -39,6 +41,12 @@ public class CoronavirusDataService {
             .uri( URI.create( VIRUS_DATA_URL ) ).build();
         
         HttpResponse<String> httpResponse = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+
+        // Capturing the last date that was recorded for the Covid data:
+        String lines[] = httpResponse.body().split("\\r?\\n");
+        String newArr[] = lines[0].split(",");
+        lastDateUpdatedForDailyCovidCount = newArr[ newArr.length - 1 ];
 
 
         // Converting string data into CSV object to easily process the data:
@@ -109,5 +117,9 @@ public class CoronavirusDataService {
         }
 
         return FormatData.formatData( totalDailyCovidCount );
+    }
+
+    public String getLastDateUpdatedForDailyCovidCount() {
+        return lastDateUpdatedForDailyCovidCount;
     }
 }

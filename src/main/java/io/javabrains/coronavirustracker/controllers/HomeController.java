@@ -28,6 +28,10 @@ public class HomeController {
             covidDataService.getTotalDailyCovidCountForAllCountries()
         );
 
+        model.addAttribute("lastAvailableCovidDataDate",
+            covidDataService.getLastDateUpdatedForDailyCovidCount()
+        );
+
         return "home";
     }
 }
