@@ -12,7 +12,10 @@
 	<artifactId>coronavirus-tracker</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>coronavirus-tracker</name>
-	<description>Demo project for Spring Boot</description>
+	<description>
+		This is web application is using the Spring Boot framework
+		to report the global Coronavirus cases.
+	</description>
 	<properties>
 		<java.version>16</java.version>
 	</properties>
